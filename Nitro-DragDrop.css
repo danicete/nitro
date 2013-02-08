@@ -1,0 +1,72 @@
+
+body.nitro { background: #000 url("images/footer_bg.png") repeat; }
+
+.main {
+	background: #e5e5e5;
+	border: 1px solid #000;
+	box-sizing: border-box;
+	padding: 0 20px;
+	width: 550px;
+	margin: 1.5em auto;
+}
+.main:before,
+.main:after {
+   content: "."; 
+   visibility: hidden; 
+   display: table; 
+   height: 0; 
+   clear: both;
+}
+
+li { list-style-type: none; cursor: move; z-index: 9999; }
+#column1,
+#column2 { 
+	top: 0;
+	background: #fff;
+	border: 2px dashed #ccc;
+	width: 200px; 
+	min-height: 350px; 
+	padding: 20px;
+	box-sizing: border-box;
+
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-ms-border-radius: 8px;
+	-o-border-radius: 8px;
+	border-radius: 8px;
+}
+#column1 { float: left; }
+#column2 { float: right; }
+
+#column1:after,
+#column2:after {
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+.logo { 
+	background: url("images/logo-bw.png") no-repeat 0 0;
+	display: block;
+	width: 150px; 
+	height: 60px; 
+}
+.logo:hover { background: url("images/logo.png") no-repeat; }
+
+.icon { 
+	background: url("images/icon-bw.png") no-repeat 0 0;
+	display: block;
+	width: 50px; 
+	height: 50px; 
+}
+.icon:hover { background: url("images/icon.png") no-repeat; }
+
+.milo { 
+	background: url("images/flying_milo-bw.png") no-repeat 0 0;
+	display: block;
+	width: 150px; 
+	height: 150px; 
+}
+.milo:hover { background: url("images/flying_milo.png") no-repeat; }

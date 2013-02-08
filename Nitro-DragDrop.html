@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	  <link href="Nitro-DragDrop.css" rel="stylesheet">
+	  <link href="reset.css" rel="stylesheet">
+	  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+	  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+	  <script>
+	  $(function() {
+	    // there's the column1 and the column2
+	    var $column1 = $( "#column1" ),
+	      $column2 = $( "#column2" );
+	 
+	    // let the column1 items be draggable
+	    $( "li", $column1 ).draggable({
+	      revert: "invalid", // when not dropped, the item will revert back to its initial position
+	      helper: "clone",
+	      stop: handleDragStop
+	    });
+	 
+	    // let the column2 be droppable, accepting the column1 items
+	    $column2.droppable({
+	      accept: "#column1 > li",
+	      drop: function( event, ui ) {
+	        dropright( ui.draggable );
+	      }
+	    });
+	 
+	    // let the column1 be droppable as well, accepting items from the column2
+	    $column1.droppable({
+	      accept: "#column2 li",
+	      drop: function( event, ui ) {
+	        dropleft( ui.draggable );
+	      }
+	    });
+	 
+		function handleDragStop( event, ui ) {
+		  var offsetXPos = parseInt( ui.offset.left );
+		  var offsetYPos = parseInt( ui.offset.top );
+		  alert( "You've been Nitro'd!");
+		}
+
+	    // drop right function
+	    function dropright( $item ) {
+	      $item.fadeOut(function() {
+	        var $list = $( "ul", $column2 ).length ?
+	          $( "ul", $column2 ) :
+	          $( "<div class='column1'/>" ).appendTo( $column2 );
+	        $item.appendTo( $list ).fadeIn(function() {
+	          $item
+	          .animate({ width: "150px" })
+	          .animate({ height: "150px" });
+	        });
+	      });
+	    }
+	 
+	    // drop left function
+	    function dropleft( $item ) {
+	      $item.fadeOut(function() {
+	        $item
+	        .appendTo( $column1 )
+	        .fadeIn();
+	      });
+	    }
+	  });
+	  </script>
+	</head>
+	<body class="nitro">
+	  <div class="main">
+	   	<ul id="column1">
+	      <li class="icon"></li>
+	      <li class="milo"></li>
+	      <li class="logo"></li>
+	    </ul>
+	    <div id="column2"></div>
+	  </div>
+	</body>
+</html>
